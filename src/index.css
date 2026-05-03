@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* 伯恩山犬核心色 */
+  --color-macy-black: #121212;      /* 深邃黑 */
+  --color-macy-charcoal: #1E1E1E;   /* 木炭色 */
+  --color-macy-rust: #8B4513;       /* 铁锈棕/巧克力色 */
+  --color-macy-forest: #243027;     /* 深森林绿 */
+  --color-macy-cream: #F5F5F0;      /* 暖白（用于点缀） */
+  --color-macy-white: #FFFFFF;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-macy-black text-macy-cream font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight font-bold;
+  }
+}
+
+/* Custom scrollbar matching the theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-macy-black;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-macy-rust/30 rounded-full hover:bg-macy-rust/50 transition-colors;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
