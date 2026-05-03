@@ -2,11 +2,13 @@
  * Backend API for contact form — POST /api/contact sends mail via Resend.
  */
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {config as loadDotenv} from 'dotenv';
 import express from 'express';
 
-// Explicit .env path so the API always loads keys regardless of cwd (e.g. tsx from another folder).
-loadDotenv({path: path.resolve(process.cwd(), '.env')});
+const serverDir = path.dirname(fileURLToPath(import.meta.url));
+// Load repo-root .env even when cwd is not the project folder (common with IDEs / nested shells).
+loadDotenv({path: path.join(serverDir, '..', '.env')});
 
 const app = express();
 const PORT = Number(process.env.API_PORT) || 3001;
@@ -17,7 +19,9 @@ app.use(express.json({ limit: '64kb' }));
 app.get('/api/health', (_req, res) => {
   res.json({
     ok: true,
-    hasResendKey: Boolean(process.env.RESEND_API_KEY),
+    hasResendKey: Boolean(
+      process.env.RESEND_API_KEY ?? process.env.resend_api_key,
+    ),
     hasNotifyEmail: Boolean(process.env.CONTACT_NOTIFY_EMAIL),
   });
 });
@@ -31,7 +35,8 @@ function escapeHtml(s: string): string {
 }
 
 app.post('/api/contact', async (req, res) => {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey =
+    process.env.RESEND_API_KEY ?? process.env.resend_api_key;
   const to = process.env.CONTACT_NOTIFY_EMAIL;
   const from =
     process.env.RESEND_FROM_EMAIL ?? 'Macy Site <onboarding@resend.dev>';
