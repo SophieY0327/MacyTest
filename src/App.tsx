@@ -16,7 +16,7 @@ import {
   Quote,
   PawPrint
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 
 // --- Constants & Data ---
 
@@ -424,7 +424,47 @@ const Testimonial = () => (
   </section>
 );
 
-const Footer = () => (
+const Footer = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  async function handleSubmit(ev: FormEvent<HTMLFormElement>) {
+    ev.preventDefault();
+    setStatus('loading');
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name, email, message}),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        detail?: string;
+      };
+      if (!res.ok) {
+        setStatus('error');
+        const base =
+          typeof data.error === 'string' ? data.error : 'Something went wrong.';
+        const detail =
+          typeof data.detail === 'string' ? ` (${data.detail})` : '';
+        setErrorMsg(`${base}${detail}`);
+        return;
+      }
+      setStatus('success');
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch {
+      setStatus('error');
+      setErrorMsg('Network error. Please try again.');
+    }
+  }
+
+  return (
   <footer id="contact" className="bg-macy-black text-macy-cream py-20 px-6">
     <div className="max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-20 mb-20">
@@ -446,21 +486,57 @@ const Footer = () => (
         </div>
 
         <div className="bg-macy-cream/5 rounded-[2rem] p-10 backdrop-blur-sm border border-macy-cream/5">
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-xs uppercase tracking-widest opacity-50 font-bold">Your Name</label>
-              <input type="text" className="w-full bg-transparent border-b border-macy-cream/20 py-3 focus:border-macy-rust outline-none transition-colors" />
+              <label htmlFor="contact-name" className="text-xs uppercase tracking-widest opacity-50 font-bold">Your Name</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                autoComplete="name"
+                className="w-full bg-transparent border-b border-macy-cream/20 py-3 focus:border-macy-rust outline-none transition-colors text-macy-cream"
+              />
             </div>
             <div className="space-y-2">
-              <label className="text-xs uppercase tracking-widest opacity-50 font-bold">Your Email</label>
-              <input type="email" className="w-full bg-transparent border-b border-macy-cream/20 py-3 focus:border-macy-rust outline-none transition-colors" />
+              <label htmlFor="contact-email" className="text-xs uppercase tracking-widest opacity-50 font-bold">Your Email</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+                className="w-full bg-transparent border-b border-macy-cream/20 py-3 focus:border-macy-rust outline-none transition-colors text-macy-cream"
+              />
             </div>
             <div className="space-y-2">
-              <label className="text-xs uppercase tracking-widest opacity-50 font-bold">Message for Macy</label>
-              <textarea rows={4} className="w-full bg-transparent border-b border-macy-cream/20 py-3 focus:border-macy-rust outline-none transition-colors resize-none"></textarea>
+              <label htmlFor="contact-message" className="text-xs uppercase tracking-widest opacity-50 font-bold">Message for Macy</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                className="w-full bg-transparent border-b border-macy-cream/20 py-3 focus:border-macy-rust outline-none transition-colors resize-none text-macy-cream"
+              />
             </div>
-            <button className="w-full bg-macy-rust py-5 rounded-xl font-bold uppercase tracking-[0.2em] hover:shadow-xl transition-all active:scale-95 text-white">
-              Send Message
+            {status === 'error' && (
+              <p className="text-sm text-red-400/90">{errorMsg}</p>
+            )}
+            {status === 'success' && (
+              <p className="text-sm text-macy-rust">Message sent. Thank you!</p>
+            )}
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="w-full bg-macy-rust py-5 rounded-xl font-bold uppercase tracking-[0.2em] hover:shadow-xl transition-all active:scale-95 text-white disabled:opacity-60 disabled:pointer-events-none"
+            >
+              {status === 'loading' ? 'Sending…' : 'Send Message'}
             </button>
           </form>
         </div>
@@ -476,7 +552,8 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default function App() {
   return (

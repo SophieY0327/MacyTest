@@ -19,6 +19,13 @@ export default defineConfig(({mode}) => {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
+      proxy: {
+        '/api': {
+          // Use loadEnv so API_PORT from .env matches server/index.ts (process.env alone is often unset in vite.config).
+          target: `http://127.0.0.1:${env.API_PORT || '3001'}`,
+          changeOrigin: true,
+        },
+      },
     },
   };
 });
