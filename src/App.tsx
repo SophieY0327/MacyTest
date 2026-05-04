@@ -65,17 +65,17 @@ const LOOKBOOK_IMAGES = [
     position: 'center'
   },
   {
-    src: 'https://images.unsplash.com/photo-1614272218903-8473deed1b3b?auto=format&fit=crop&q=80&w=1000',
+    src: '/images/lookbook-03.jpg',
     title: 'Meadow Revelry',
     desc: 'Despite her large size, she runs like a flexible little giant, every strand of fur dancing in the wind.'
   },
   {
-    src: 'https://images.unsplash.com/photo-1612533051185-3069151f1585?auto=format&fit=crop&q=80&w=1000',
+    src: '/images/lookbook-04.jpg',
     title: 'A Winter Fairy Tale',
     desc: 'When snowflakes land on her thick black coat, she looks as if she has returned to the majestic peaks of her ancestors.'
   },
   {
-    src: 'https://images.unsplash.com/photo-1590212151175-e58edd96185b?auto=format&fit=crop&q=80&w=1000',
+    src: '/images/lookbook-05.jpg',
     title: 'Porch Guardian',
     desc: 'She sits there quietly, requiring no words; her presence alone is a silent and profound companionship.'
   },
