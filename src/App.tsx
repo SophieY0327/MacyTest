@@ -196,10 +196,6 @@ const Hero = () => (
 
         <div className="flex flex-col md:flex-row md:items-center gap-12 mt-12">
           <div className="space-y-4">
-            <p className="text-xl md:text-2xl text-white/80 font-serif leading-snug">
-              Finding the purest<br />
-              <span className="text-macy-rust">rhythms of life</span> in the breeze.
-            </p>
             <div className="flex gap-4">
               <button className="bg-macy-rust text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-2xl flex items-center gap-3">
                 Discover My Story <ChevronRight size={18} />
