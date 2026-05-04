@@ -262,12 +262,13 @@ const GrowthBanner = () => (
   <section id="diary" className="py-20 bg-white">
     <div className="max-w-[1800px] mx-auto px-4">
       <div className="relative aspect-[21/9] rounded-[2rem] overflow-hidden group cursor-pointer shadow-2xl">
-        {/* 模拟视频背景：使用极宽的场景图 */}
-        <img 
-          src="https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&q=80&w=2048" 
-          alt="Macy in the mountains" 
+        <video
+          src="/images/growth-video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
-          referrerPolicy="no-referrer"
         />
         
         {/* 视频遮罩与动态效果 */}
