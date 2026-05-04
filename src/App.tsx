@@ -80,7 +80,7 @@ const LOOKBOOK_IMAGES = [
     desc: 'She sits there quietly, requiring no words; her presence alone is a silent and profound companionship.'
   },
   {
-    src: 'https://images.unsplash.com/photo-1643194684534-19266ab0188b?auto=format&fit=crop&q=80&w=1000',
+    src: '/images/lookbook-06.jpg',
     title: 'Cool Stream Moment',
     desc: 'By the stream in the deep forest, she explores nature\'s mysteries with a wet nose, seeking the coolness of summer.'
   }
