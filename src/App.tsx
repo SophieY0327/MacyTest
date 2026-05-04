@@ -272,15 +272,14 @@ const GrowthBanner = () => (
         />
         
         {/* 视频遮罩与动态效果 */}
-        <div className="absolute inset-0 bg-macy-black/30 group-hover:bg-macy-black/20 transition-colors duration-700 flex flex-col items-center justify-center text-center px-6">
-          <motion.div 
+        <div className="absolute inset-0 bg-macy-black/10 group-hover:bg-macy-black/20 transition-colors duration-700 flex flex-col justify-end text-center px-6">
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="mb-8"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           >
             <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-white/50 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:border-macy-rust transition-all duration-500 relative">
               <div className="w-0 h-0 border-t-[10px] md:border-t-[12px] border-t-transparent border-l-[16px] md:border-l-[20px] border-l-white border-b-[10px] md:border-b-[12px] border-b-transparent ml-2 group-hover:border-l-macy-rust transition-colors"></div>
-              {/* 扩散光圈动画 */}
               <div className="absolute inset-0 rounded-full border border-white animate-ping opacity-20"></div>
             </div>
           </motion.div>
@@ -289,11 +288,9 @@ const GrowthBanner = () => (
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
+            className="mb-16 md:mb-10"
           >
-            <span className="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-white mb-6 inline-block">
-              Cinematic Record 2026
-            </span>
-            <h2 className="text-3xl md:text-7xl font-bold text-white mb-6 tracking-tighter">
+            <h2 className="text-3xl md:text-7xl font-bold text-white mb-4 tracking-tighter">
               Running Through <span className="italic font-serif">Alpine</span> Memories
             </h2>
             <p className="text-white/80 text-sm md:text-xl font-serif italic max-w-2xl mx-auto px-4">
