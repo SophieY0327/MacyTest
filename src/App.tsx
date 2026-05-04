@@ -170,63 +170,44 @@ const Hero = () => (
       <img
         src="/images/hero-bg.jpg"
         alt="Bernese Mountain Dog in Nature"
-        className="w-full h-full object-cover opacity-60"
+        className="w-full h-full object-cover opacity-80"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-macy-black via-macy-black/60 to-transparent"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-macy-black via-transparent to-transparent"></div>
     </div>
 
-    <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+    <div className="max-w-7xl mx-auto px-6 relative z-10 w-full h-screen flex flex-col justify-between py-32">
+      {/* Main content — left-aligned, vertically centered */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        className="max-w-3xl"
       >
-        <div className="flex items-center gap-3 mb-8">
-          <span className="text-macy-rust font-bold uppercase tracking-[0.4em] text-xs">Origin Switzerland</span>
-          <div className="flex gap-1">
-            <span className="w-2 h-2 rounded-full bg-macy-rust"></span>
-            <span className="w-2 h-2 rounded-full bg-white/20"></span>
-            <span className="w-2 h-2 rounded-full bg-white/20"></span>
-          </div>
-        </div>
-        
+        <h1 className="font-serif text-5xl md:text-7xl font-bold text-white leading-none tracking-tight">
+          Hello,<br />
+          <span className="text-macy-rust">I&apos;m Macy.</span>
+        </h1>
+        <p className="mt-8 text-white/40 text-sm md:text-base font-light tracking-wide max-w-xs leading-relaxed">
+          A Bernese Mountain Dog with a heart as warm as the Swiss Alps she calls home.
+        </p>
+      </motion.div>
 
-        <div className="flex flex-col md:flex-row md:items-center gap-12 mt-12">
-          <div className="space-y-4">
-            <div className="flex gap-4">
-              <button className="bg-macy-rust text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-2xl flex items-center gap-3">
-                Discover My Story <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-
-          <div className="hidden lg:block border-l border-white/10 pl-10 py-2">
-            <div className="space-y-6">
-              <div>
-                <p className="text-white/40 uppercase text-[10px] tracking-[0.2em] font-bold mb-1">Character</p>
-                <p className="text-sm font-medium">Steady, Loyal, and Infinite Patience</p>
-              </div>
-              <div>
-                <p className="text-white/40 uppercase text-[10px] tracking-[0.2em] font-bold mb-1">Attitude</p>
-                <p className="text-sm font-medium">Nap in the sun, or gallop in the wild</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* CTA — bottom-left */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+        className="mb-16"
+      >
+        <a
+          href="#about"
+          className="inline-flex items-center gap-2 bg-macy-rust text-white px-5 py-2.5 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-2xl text-xs"
+        >
+          Discover My Story <ChevronRight size={14} />
+        </a>
       </motion.div>
     </div>
 
-    {/* Scroll Indicator */}
-    <motion.div 
-      animate={{ y: [0, 10, 0] }}
-      transition={{ repeat: Infinity, duration: 2 }}
-      className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
-    >
-      <span className="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
-      <div className="w-[1px] h-12 bg-white"></div>
-    </motion.div>
   </section>
 );
 
@@ -235,12 +216,12 @@ const About = () => (
     <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
       <div className="relative">
         <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl relative z-10">
-          <img src="https://images.unsplash.com/photo-1591160690555-5debfba289f0?auto=format&fit=crop&q=80&w=1200" alt="Macy in field" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          <img src="/images/macy-about.jpg" alt="Macy" className="w-full h-full object-cover object-center" referrerPolicy="no-referrer" />
         </div>
         {/* Floating badge */}
-        <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-macy-rust rounded-full flex flex-col items-center justify-center text-white z-20 shadow-2xl border-8 border-white">
-          <p className="text-4xl font-serif font-bold">02</p>
-          <p className="text-[10px] uppercase tracking-widest font-bold">Years of Joy</p>
+        <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-macy-rust rounded-full flex flex-col items-center justify-center text-white z-20 shadow-2xl border-4 border-white">
+          <p className="text-2xl font-serif font-bold leading-none">02</p>
+          <p className="text-[7px] uppercase tracking-widest font-bold leading-tight mt-0.5">Years of Joy</p>
         </div>
       </div>
 
