@@ -54,14 +54,15 @@ const DIARY_ENTRIES = [
 
 const LOOKBOOK_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&fit=crop&q=80&w=1000',
+    src: '/images/gallery-1.png',
     title: 'Alpine Morning',
     desc: 'As the first rays of sun peak into the valley, Macy has already left her first paw print on the dew-covered grass.'
   },
   {
-    src: 'https://images.unsplash.com/photo-1629161747808-011867c4ec2a?auto=format&fit=crop&q=80&w=1000',
+    src: '/images/gallery-2.png',
     title: 'Gaze in the Warm Sun',
-    desc: 'Capturing a pair of gentle eyes, filled with the peace unique to a Bernese, capable of healing all exhaustion.'
+    desc: 'Capturing a pair of gentle eyes, filled with the peace unique to a Bernese, capable of healing all exhaustion.',
+    position: 'center'
   },
   {
     src: 'https://images.unsplash.com/photo-1614272218903-8473deed1b3b?auto=format&fit=crop&q=80&w=1000',
@@ -359,6 +360,7 @@ const Gallery = () => {
                 <img 
                   src={item.src} 
                   alt={item.title} 
+                  style={item.position ? { objectPosition: item.position } : undefined}
                   className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700 group-hover:scale-110" 
                   referrerPolicy="no-referrer"
                 />
