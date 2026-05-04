@@ -167,11 +167,10 @@ const Hero = () => (
   <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-macy-black">
     {/* Full Screen Background Image */}
     <div className="absolute inset-0 z-0">
-      <img 
-        src="https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&q=80&w=2000" 
-        alt="Bernese Mountain Dog in Nature" 
-        className="w-full h-full object-cover opacity-60 grayscale-[0.2]"
-        referrerPolicy="no-referrer"
+      <img
+        src="/images/hero-bg.jpg"
+        alt="Bernese Mountain Dog in Nature"
+        className="w-full h-full object-cover opacity-60"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-macy-black via-macy-black/60 to-transparent"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-macy-black via-transparent to-transparent"></div>
