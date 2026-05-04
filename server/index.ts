@@ -37,9 +37,9 @@ function escapeHtml(s: string): string {
 app.post('/api/contact', async (req, res) => {
   const apiKey =
     process.env.RESEND_API_KEY ?? process.env.resend_api_key;
-  const to = process.env.CONTACT_NOTIFY_EMAIL;
+  const to = process.env.CONTACT_NOTIFY_EMAIL?.trim();
   const from =
-    process.env.RESEND_FROM_EMAIL ?? 'Macy Site <onboarding@resend.dev>';
+    (process.env.RESEND_FROM_EMAIL ?? 'Macy Site <onboarding@resend.dev>').trim();
 
   if (!apiKey) {
     res.status(500).json({ error: 'Missing RESEND_API_KEY' });

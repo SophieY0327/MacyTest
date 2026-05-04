@@ -193,10 +193,6 @@ const Hero = () => (
           </div>
         </div>
         
-        <h1 className="text-7xl md:text-[10rem] font-bold leading-[0.8] mb-10 text-white tracking-tighter">
-          HELLO<br />
-          <span className="text-macy-rust">MACY</span>
-        </h1>
 
         <div className="flex flex-col md:flex-row md:items-center gap-12 mt-12">
           <div className="space-y-4">
